@@ -14,7 +14,7 @@ gpioPort = '4'
 adafruitScript = '/Adafruit_Python_DHT/examples/AdafruitDHT.py'
 
 #location where temperature script is stored
-tempScriptLocation = '/home/pi/scripts/getTempValue.py'
+tempScriptLocation = '/home/pi/piTempBot/getTempValue.py'
 
 
 ###################################################################
