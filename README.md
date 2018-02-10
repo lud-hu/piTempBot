@@ -18,12 +18,52 @@ You can find a (german) instruction on how to set up the DHT22 sensor on the Pi 
 
 In order to have some log data recorded every 5 minutes you have to put the python script on the crontab list of your Pi:
 ```
-*/5 * * * * /usr/bin/python /home/pi/scripts/csvTempLogger.py
+*/5 * * * * /usr/bin/python /home/pi/piTempBot/csvTempLogger.py
 ```
 
 ### config file
 
-You can set the most important settings in the "config.py" file. If you locate your project on /home/pi/scripts/ you just have to adapt the Telegram Token Key and the Telegram User IDs (white list).
+You can set the most important settings with the file liste below. If you locate your project on /home/pi/piTempBot/ you just have to adapt the Telegram Token Key and the Telegram User IDs (white list).
+
+Save this in the projects root folder as "config.py":
+```
+###################################################################
+#HARDWARE SETTINGS
+
+#version of used sensor
+hardwareVersion = '22' # '22' for DHT22, '11' for DHT11
+
+#used GPIO Port on Raspberry Pi
+gpioPort = '4'
+
+###################################################################
+#FILE LOCATION SETTINGS
+
+#location where the sensor readout script is located
+adafruitScript = '/Adafruit_Python_DHT/examples/AdafruitDHT.py'
+
+#location where temperature script is stored
+tempScriptLocation = '/home/pi/piTempBot/getTempValue.py'
+
+
+###################################################################
+#CSV FILE SETTINGS
+
+#location where the csv log file is stored
+logLocation = '/home/pi/temperaturlog.csv'
+
+#colum titles of the log file
+columnTitles = ['Tag','Zeit','Temperatur','Luftfeuchtigkeit'] #day, time, temperature, humidity
+
+###################################################################
+#TELEGRAM BOT SETTINGS
+
+#Telegram Bot Token Key
+botTokenKey = 'xxx'
+
+#Telegram User White List (other users can not use the bot)
+allowedUserIds = [xxx,xxx] # user1, user2
+```
 
 ### Telegram Bot
 
@@ -31,7 +71,7 @@ The Telegram bot logic is located in "telegramBot.py". The commands for telling 
 
 In order to make the bot startup at a reboot of your Pi you have to add this line to the crontab list of your Pi:
 ```
-@reboot /home/pi/scripts/startTelegramBot.py
+@reboot /home/pi/piTempBot/startTelegramBot.py
 ```
 
 You can set a list of Telegram user IDs in the "config.py" file that are allowed to talk to the Telegram bot. Otherwise it would be publicly available for everyone.
