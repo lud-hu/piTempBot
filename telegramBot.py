@@ -64,7 +64,7 @@ def action(msg):
 
     print("Received " + str(command) + " from " + str(chat_id))
 
-    if (chat_id !in cfg.allowedUserIds):
+    if (chat_id not in cfg.allowedUserIds):
         telegram_bot.sendMessage(chat_id, str("Neee, fuer dich tu ich garnix!"))
         print("Feind abgewehrt!")
         return
