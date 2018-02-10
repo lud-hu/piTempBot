@@ -1,6 +1,7 @@
 import time
 import sys
 import subprocess
+from subprocess import call
 import csv
 import telepot
 from telepot.loop import MessageLoop
@@ -81,6 +82,9 @@ def action(msg):
         sendLog(chat_id)
     elif command == '/clear_log':
         clearLog(chat_id)     
+	elif command == '/shutdown':
+        telegram_bot.sendMessage(chat_id, str("Alles, klar! Mach's gut! ") + u'\U0001F60A')
+		call(["sudo shutdown now"])
     else:
         telegram_bot.sendMessage(chat_id, str("Sorry, das habe ich nicht verstanden!"))
 
