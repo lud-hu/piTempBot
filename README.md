@@ -1,5 +1,6 @@
 # piTempBot
-This is a little collection of python scripts for running a Telegram bot on a Raspberry Pi which records temperature, humidity etc<!--- with a little web interface--->.
+This is a little collection of python scripts for running a Telegram bot on a Raspberry Pi which records temperature, humidity etc.
+<!--- with a little web interface--->
 
 ## Features
 
