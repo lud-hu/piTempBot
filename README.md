@@ -63,6 +63,26 @@ botTokenKey = 'xxx'
 
 #Telegram User White List (other users can not use the bot)
 allowedUserIds = [xxx,xxx] # user1, user2
+
+###################################################################
+#NETATMO SETTINGS
+
+#login credentials for netatmo
+credentials = {
+	"password":"myNetatmoDevPasswor",
+	"username":"my.mail@mail.com",
+	"client_id":"1234567890",
+	"client_secret":"1234567890"
+}
+
+#region to scan for netatmo weather stations
+#look here for more information: https://dev.netatmo.com/en-US/resources/technical/reference/weatherapi/getpublicdata
+region = {
+	"lat_ne" : 50.0,
+	"lat_sw" : 50.0,
+	"lon_ne" : 10.0,
+	"lon_sw" : 10.0,
+}
 ```
 
 ### Telegram Bot
