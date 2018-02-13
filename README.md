@@ -4,7 +4,7 @@ This is a little collection of python scripts for running a Telegram bot on a Ra
 
 ## Features
 
-*  records Temperature and Humidity (more to come)
+*  records Temperature, Humidity (Indoor) and Temperature, Humidity, Pressure, Rain (Outdoor)
 *  saves it into csv file
 *  running a Telegram bot which can tell you the current measurements and send you the log data
 <!---*  has a little web interface to show you the statisics (currently in progress)--->
