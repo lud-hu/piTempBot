@@ -5,6 +5,7 @@ import subprocess
 import csv
 import config as cfg
 import netatmo
+import getTempValue
 
 #location where the csv log file is stored
 logLocation = cfg.logLocation
@@ -23,9 +24,7 @@ date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
 time = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
 
 #get indoor temp and humidity
-currentTemp = subprocess.check_output([sys.executable, tempScriptLocation, "22", "4"])
-
-#parse temp and humidity
+currentTemp = getTempValue.getValues()
 temp,humidity = currentTemp.split(",")
 
 #get outdoor data
