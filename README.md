@@ -27,6 +27,8 @@ You can find a (german) instruction on how to set up the DHT22 sensor on the Pi 
 The logging of outdoor temperature, humidity, pressure and rain data is currently implemented by using the API of www.netatmo.com (a crowdbased service of home weather stations - you can look at the coverage in your region here: https://weathermap.netatmo.com ).
 "netatmo.py" pulls the data from all public stations in the given sector (see "config.py") and calculates the mean value. Afterwards it is saved to the log by "csvTempLogger.py" again.
 
+Library used for netatmo connection: https://github.com/antechrestos/python-netatmo-client
+
 #### Cron-Job
 
 In order to have the log data recorded every 5 minutes you have to put the python script on the crontab list of your Pi:
