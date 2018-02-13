@@ -43,8 +43,8 @@ fields=[
 	convertToStringWithComma(pressure),
 	convertToStringWithComma(rain),
 	convertToStringWithComma(rain24h)]
-	
+	 
 with open(logLocation, 'a') as f:
     writer = csv.writer(f, dialect=excel_semicolon)
     writer.writerow(fields)
-print("wrote csv file successfully: " + date + ";" + time + ";" + temp + ";" + humidity)
+print("wrote csv file successfully: " + str(fields))

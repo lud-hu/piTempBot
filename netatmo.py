@@ -11,7 +11,7 @@ def getValues():
 
 	# currently just receiving the JSON, not doing anything with it
 	result = client.public.get_public_data(cfg.region["lat_ne"], cfg.region["lon_ne"], cfg.region["lat_sw"], cfg.region["lon_sw"])
-	print json.dumps(result)
+	#print json.dumps(result)
 
 	temperatures = []
 	humidities = []
