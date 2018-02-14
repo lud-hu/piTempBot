@@ -88,7 +88,9 @@ tempScriptLocation = '/home/pi/piTempBot/getTempValue.py'
 logLocation = '/home/pi/temperaturlog.csv'
 
 #colum titles of the log file
-columnTitles = ['Tag','Zeit','Temperatur','Luftfeuchtigkeit'] #day, time, temperature, humidity
+columnTitles = ['Tag','Zeit','Temperatur innen','Luftfeuchtigkeit innen','Temperatur aussen','Luftfeuchtigkeit aussen','Luftdruck','Regen','Regen 24h']
+
+columnUnits = ['','Uhr','*C','%','*C','%','hPa','mm','mm']
 
 ###################################################################
 #TELEGRAM BOT SETTINGS
