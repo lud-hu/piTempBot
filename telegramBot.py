@@ -20,11 +20,42 @@ temperatureLog = cfg.logLocation
 #colum titles of the log file
 columnTitles = cfg.columnTitles
 
+#column units
+columnUnits = cfg.columnUnits
+
 #----------------------------------
 # custom csv dialect
 #----------------------------------
 class excel_semicolon(csv.excel):
     delimiter = ';'
+
+#-----------------------------------
+# MESSAGE: send temp data
+#-----------------------------------
+def temp(chat_id):
+
+    result = "Hier ist meine letzte Messung:\n"
+    data = []
+    measureDate = ""
+
+    #get last line from file
+    with open(temperatureLog) as f:
+        data = list(f)[-1]
+    
+    #split into list
+    data = data.split(";")
+
+    #build return string
+    for index, val in enumerate(columnTitles):
+        if (index <= 1):
+            measureDate += data[index] + " "
+        else:
+            result += val + ": " + data[index].replace("\n","") + " " + columnUnits[index] + "\n"
+    
+    #append measure date
+    result += "Messung von: " + measureDate
+
+    telegram_bot.sendMessage(chat_id, result)
 
 #-----------------------------------
 # MESSAGE: stats response
@@ -73,11 +104,11 @@ def action(msg):
     if command.find("Hi") != -1 or command.find("hi") != -1 or command.find("Hallo") != -1:
         telegram_bot.sendMessage(chat_id, str("Hi, wie geht's`? ") + u'\U0001F60A')
     elif command == '/temp':
-        telegram_bot.sendMessage(chat_id, subprocess.check_output([sys.executable, adafruitScript, "22", "4"]))
+        temp(chat_id)
     elif command == '/stats':
         stats(chat_id)
     elif command.find("warm") != -1:
-        telegram_bot.sendMessage(chat_id, subprocess.check_output([sys.executable, adafruitScript, "22", "4"]))
+        temp(chat_id)
     elif command == '/send_log':
         sendLog(chat_id)
     elif command == '/clear_log':
