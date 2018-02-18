@@ -6,6 +6,7 @@ import csv
 import config as cfg
 import netatmo
 import getTempValue
+import ventilateCalc
 
 #location where the csv log file is stored
 logLocation = cfg.logLocation
@@ -60,13 +61,29 @@ def getOutdoorValues():
     outdoorData = convertToStringWithComma(outdoorData)
     return outdoorData
 
-#csv logging
-fields = []
-fields.extend(getCurrentTime())
-fields.extend(getIndoorValues())
-fields.extend(getOutdoorValues())
+#-----------------------------------
+# get ventilation calculations
+#-----------------------------------
+def getVentilationCals():
+    deltaAbsHum = ventilateCalc.calc(indoorValues[0],
+                                     indoorValues[1],
+                                     outdoorValues[0],
+                                     outdoorValues[1])
+    return convertToStringWithComma(deltaAbsHum)
 
-	 
+
+#-------------------------------------------------------
+currentTime = getCurrentTime()
+indoorValues = getIndoorValues()
+outdoorValues = getOutdoorValues()
+
+fields = []
+fields.extend(currentTime)
+fields.extend(indoorValues)
+fields.extend(outdoorValues)
+fields.append(getVentilationCals())
+
+#csv logging
 with open(logLocation, 'a') as f:
     writer = csv.writer(f, dialect=excel_semicolon)
     writer.writerow(fields)
