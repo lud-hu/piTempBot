@@ -29,6 +29,8 @@ def convertToStringWithComma(content):
         for x in content:
             result.append(x.replace(".", ","))
         return result
+    elif isinstance(content, float):
+        return convertToStringWithComma(str(content))
     else:
         return content.replace(".", ",")
 
